@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hnzzyzy.staffingsystem.dao.StaffingEmpMapper">
+    <select id="queryEmpByPage" resultType="StaffingEmp">
+        SELECT *
+        FROM staffing_emp
+        ORDER BY create_time DESC
+        LIMIT #{offset}, #{limit}
+    </select>
+
+    <select id="queryEmpById" resultType="StaffingEmp">
+        SELECT *
+        FROM staffing_emp
+        WHERE emp_id = #{empId}
+    </select>
+
+    <select id="queryAllCount" resultType="java.lang.Long">
+        SELECT COUNT(*)
+        FROM staffing_emp
+    </select>
+
+    <insert id="insertEmp">
+        INSERT INTO staffing_emp (emp_name, emp_phone, emp_avatar_url, other_info, entry_time, be_formal_time)
+        VALUES (#{empName}, #{empPhone}, #{empAvatarUrl}, #{otherInfo}, #{entryTime}, #{beFormalTime})
+    </insert>
+    <update id="updateEmp">
+        UPDATE staffing_emp
+        <set>
+            <if test="empName!=null">
+                emp_name=#{empName},
+            </if>
+            <if test="empPhone!=null">
+                emp_phone=#{empPhone},
+            </if>
+            <if test="empAvatarUrl!=null">
+                emp_avatar_url=#{empAvatarUrl},
+            </if>
+            <if test="otherInfo!=null">
+                other_info=#{otherInfo},
+            </if>
+            <if test="entryTime!=null">
+                entry_time=#{entryTime},
+            </if>
+            <if test="beFormalTime!=null">
+                be_formal_time=#{beFormalTime},
+            </if>
+        </set>
+        WHERE emp_id=#{empId}
+    </update>
+</mapper>
