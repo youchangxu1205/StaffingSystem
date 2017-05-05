@@ -16,3 +16,4 @@
 <script src="${basePath}/resources/zheng-admin/plugins/select2/js/select2.min.js"></script>
 <script src="${basePath}/resources/zheng-admin/plugins/zTree_v3/js/jquery.ztree.all.min.js"></script>
 <script src="${basePath}/resources/zheng-admin/js/common.js"></script>
+<script src="${basePath}/resources/zheng-admin/plugins/bootstrap-table-1.11.0/filter-control/bootstrap-table-filter-control.js"></script>

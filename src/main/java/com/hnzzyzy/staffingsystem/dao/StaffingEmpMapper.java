@@ -15,10 +15,10 @@ public interface StaffingEmpMapper {
      *
      * @param limit
      * @param offset
-     * @param staffingEmp //根据条件查询员工信息
-     * @return
+     * @param sortByOrder
+     * @param staffingEmp //根据条件查询员工信息  @return
      */
-    List<StaffingEmp> queryEmpByPage(@Param("limit") int limit, @Param("offset") int offset, @Param("staffingEmp") StaffingEmp staffingEmp);
+    List<StaffingEmp> queryEmpByPage(@Param("limit") int limit, @Param("offset") int offset, @Param("sortByOrder") String sortByOrder, @Param("staffingEmp") StaffingEmp staffingEmp);
 
     /**
      * 根据主键查询员工信息

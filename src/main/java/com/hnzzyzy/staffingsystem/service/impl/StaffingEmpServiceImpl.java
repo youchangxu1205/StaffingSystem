@@ -16,7 +16,7 @@ public class StaffingEmpServiceImpl implements StaffingEmpService {
     @Autowired
     StaffingEmpMapper staffingEmpMapper;
 
-    public List<StaffingEmp> getEmpListByPage(Integer limit, Integer offset, StaffingEmp staffingEmp) {
+    public List<StaffingEmp> getEmpListByPage(Integer limit, Integer offset, String sortByOrder, StaffingEmp staffingEmp) {
         if (limit == null || limit == 0) {
             limit = 10;
         }
@@ -24,7 +24,7 @@ public class StaffingEmpServiceImpl implements StaffingEmpService {
         if (offset == null) {
             offset = 0;
         }
-        return staffingEmpMapper.queryEmpByPage(limit, offset, staffingEmp);
+        return staffingEmpMapper.queryEmpByPage(limit, offset,sortByOrder, staffingEmp);
     }
 
     @Override

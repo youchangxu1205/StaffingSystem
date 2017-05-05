@@ -13,9 +13,10 @@ public interface StaffingEmpService {
      *
      * @param limit
      * @param offset
+     * @param sortByOrder
      * @return
      */
-    List<StaffingEmp> getEmpListByPage(Integer limit, Integer offset, StaffingEmp staffingEmp);
+    List<StaffingEmp> getEmpListByPage(Integer limit, Integer offset, String sortByOrder, StaffingEmp staffingEmp);
 
     /**
      * 获取个数

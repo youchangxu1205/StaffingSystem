@@ -22,7 +22,7 @@ public class StaffingEmpMappingTest {
 
     @Test
     public void queryEmpByPage() throws Exception {
-        List<StaffingEmp> staffingEmps = staffingEmpMapping.queryEmpByPage(1, 0, null);
+        List<StaffingEmp> staffingEmps = staffingEmpMapping.queryEmpByPage(1, 0,null, null);
         for (StaffingEmp staffingEmp :
                 staffingEmps) {
             System.out.println(staffingEmp);

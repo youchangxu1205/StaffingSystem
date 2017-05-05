@@ -6,7 +6,9 @@
     <select id="queryEmpByPage" resultType="StaffingEmp">
         SELECT *
         FROM staffing_emp
-        ORDER BY create_time DESC
+        <if test="sortByOrder!=null">
+            ORDER BY ${sortByOrder}
+        </if>
         LIMIT #{offset}, #{limit}
     </select>
 

@@ -1,9 +1,9 @@
-<%@ page contentType="text/html; charset=utf-8"%>
-<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ page contentType="text/html; charset=utf-8" %>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <c:set var="basePath" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE HTML>
@@ -17,12 +17,17 @@
 </head>
 <body>
 <div id="main">
+    <div id="toolbar">
+       <select>
+
+       </select>
+    </div>
     <table id="table"></table>
 </div>
 <jsp:include page="/resources/inc/footer.jsp" flush="true"/>
 <script>
     var $table = $('#table');
-    $(function() {
+    $(function () {
         // bootstrap table初始化
         $table.bootstrapTable({
             url: '${basePath}/emp/list',
@@ -36,6 +41,7 @@
             detailView: true,
             detailFormatter: 'detailFormatter',
             pagination: true,
+            queryParams: 'queryParams',
             paginationLoop: false,
             sidePagination: 'server',
             silentSort: false,
@@ -49,10 +55,36 @@
                 {field: 'ck', checkbox: true},
                 {field: 'empId', title: '编号', sortable: true, align: 'center'},
                 {field: 'empName', title: '员工姓名'},
-                {field: 'action', title: '操作', align: 'center', formatter: 'actionFormatter', events: 'actionEvents', clickToSelect: false}
+                {field: 'empStatus', title: '状态',sortable:true, formatter: 'statusFormatter'},
+                {
+                    field: 'action',
+                    title: '操作',
+                    align: 'center',
+                    formatter: 'actionFormatter',
+                    events: 'actionEvents',
+                    clickToSelect: false
+                }
             ]
         });
     });
+    
+    function queryParams(params) {
+        return params;
+    }
+
+    function statusFormatter(value, row, index) {
+        if (value == -2) {
+            return '<span class="label label-default">试岗离开</span>';
+        } else if (value == -1) {
+            return '<span class="label label-danger">离职</span>';
+        } else if (value == 0) {
+            return '<span class="label label-info">休长假</span>';
+        } else if (value == 1) {
+            return '<span class="label label-success">在职</span>';
+        } else if (value == 2) {
+            return '<span class="label label-primary">试岗中</span>';
+        }
+    }
     // 格式化操作按钮
     function actionFormatter(value, row, index) {
         return [
@@ -135,10 +167,10 @@
                             $.ajax({
                                 type: 'get',
                                 url: '${basePath}/manage/organization/delete/' + ids.join("-"),
-                                success: function(result) {
+                                success: function (result) {
                                     if (result.code != 1) {
                                         if (result.data instanceof Array) {
-                                            $.each(result.data, function(index, value) {
+                                            $.each(result.data, function (index, value) {
                                                 $.confirm({
                                                     theme: 'dark',
                                                     animation: 'rotateX',
@@ -173,7 +205,7 @@
                                         $table.bootstrapTable('refresh');
                                     }
                                 },
-                                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                                error: function (XMLHttpRequest, textStatus, errorThrown) {
                                     $.confirm({
                                         theme: 'dark',
                                         animation: 'rotateX',

@@ -1,8 +1,6 @@
 package com.hnzzyzy.staffingsystem.web;
 
-import com.hnzzyzy.staffingsystem.dto.StaffingSystemResult;
 import com.hnzzyzy.staffingsystem.entity.StaffingEmp;
-import com.hnzzyzy.staffingsystem.enums.StaffingSystemResultConstant;
 import com.hnzzyzy.staffingsystem.service.StaffingEmpService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,8 +28,18 @@ public class StaffingEmpController {
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ResponseBody
-    public Object list() {
-        List<StaffingEmp> rows = staffingEmpService.getEmpListByPage(10, 0, null);
+    public Object list(int limit, int offset, String sort, String order,StaffingEmp staffingEmp) {
+        String sortByOrder = null;
+        if (sort != null && sort != "" && order != null && order != "") {
+            if(sort.equals("empId")){
+                sort="emp_id";
+            }else if(sort.equals("empStatus")){
+                sort="emp_status";
+            }
+            sortByOrder = sort + " " + order;
+        }
+        List<StaffingEmp> rows =
+                staffingEmpService.getEmpListByPage(limit, offset, sortByOrder, staffingEmp);
         long total = staffingEmpService.getAllCount();
         Map<String, Object> result = new HashMap<>();
         result.put("rows", rows);
