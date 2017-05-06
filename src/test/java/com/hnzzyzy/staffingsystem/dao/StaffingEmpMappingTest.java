@@ -37,7 +37,7 @@ public class StaffingEmpMappingTest {
 
     @Test
     public void insertEmp() throws Exception {
-        StaffingEmp staffingEmp = new StaffingEmp("李康3", "13523016867", "", 2, "", new Date(), new Date());
+        StaffingEmp staffingEmp = new StaffingEmp("李康3", "13523016867", "likang3","", 2, "", new Date(), new Date());
         int count = staffingEmpMapping.insertEmp(staffingEmp);
         System.out.println(count);
     }

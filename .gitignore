@@ -1,6 +1,5 @@
 
 .gitignore
 .idea/
-src/main/java/com/hnzzyzy/staffingsystem/exception/
 src/test/resources/
 target/

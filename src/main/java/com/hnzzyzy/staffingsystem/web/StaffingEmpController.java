@@ -1,6 +1,10 @@
 package com.hnzzyzy.staffingsystem.web;
 
+import com.hnzzyzy.staffingsystem.dto.StaffingSystemResult;
 import com.hnzzyzy.staffingsystem.entity.StaffingEmp;
+import com.hnzzyzy.staffingsystem.enums.StaffingSystemResultConstant;
+import com.hnzzyzy.staffingsystem.exception.InsertErrorException;
+import com.hnzzyzy.staffingsystem.exception.UserNameExitException;
 import com.hnzzyzy.staffingsystem.service.StaffingEmpService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -50,5 +54,23 @@ public class StaffingEmpController {
         result.put("rows", rows);
         result.put("total", total);
         return result;
+    }
+    @RequestMapping(value = "/create", method = RequestMethod.GET)
+    public String create(){
+        return "/emp/create";
+    }
+
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    public Object createPost(StaffingEmp staffingEmp){
+
+        try {
+            staffingEmpService.insertEmp(staffingEmp);
+        } catch (UserNameExitException e) {
+            return new StaffingSystemResult(StaffingSystemResultConstant.USERNAME_IS_EXITED,e);
+        } catch (InsertErrorException e){
+            return new StaffingSystemResult(StaffingSystemResultConstant.INSERT_ERROR,e);
+        }
+
+        return new StaffingSystemResult(StaffingSystemResultConstant.SUCCESS,null);
     }
 }

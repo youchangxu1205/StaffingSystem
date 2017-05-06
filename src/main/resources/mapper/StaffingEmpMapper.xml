@@ -21,6 +21,11 @@
         FROM staffing_emp
         WHERE emp_id = #{empId}
     </select>
+    <select id="queryEmpByUsername" resultType="StaffingEmp">
+        SELECT *
+        FROM staffing_emp
+        WHERE emp_name = #{empName}
+    </select>
 
     <select id="queryAllCount" resultType="java.lang.Long">
         SELECT COUNT(*)
@@ -32,8 +37,8 @@
     </select>
 
     <insert id="insertEmp">
-        INSERT INTO staffing_emp (emp_name, emp_phone, emp_avatar_url, other_info, entry_time, be_formal_time)
-        VALUES (#{empName}, #{empPhone}, #{empAvatarUrl}, #{otherInfo}, #{entryTime}, #{beFormalTime})
+        INSERT INTO staffing_emp (emp_name, emp_phone,user_name, emp_avatar_url, other_info, entry_time, be_formal_time)
+        VALUES (#{empName}, #{empPhone},#{userName}, #{empAvatarUrl}, #{otherInfo}, #{entryTime}, #{beFormalTime})
     </insert>
     <update id="updateEmp">
         UPDATE staffing_emp
@@ -59,4 +64,5 @@
         </set>
         WHERE emp_id=#{empId}
     </update>
+
 </mapper>

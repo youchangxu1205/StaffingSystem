@@ -11,11 +11,11 @@ public enum StaffingSystemResultConstant {
 
     INVALID_LENGTH(10001, "Invalid length"),
 
-    EMPTY_USERNAME(10101, "Username cannot be empty"),
+    USERNAME_IS_EXITED(10101, "用户名已经存在"),
     EMPTY_PASSWORD(10102, "Password cannot be empty"),
     INVALID_USERNAME(10103, "Account does not exist"),
     INVALID_PASSWORD(10104, "Password error"),
-    INVALID_ACCOUNT(10105, "Invalid account");
+    INVALID_ACCOUNT(10105, "Invalid account"), INSERT_ERROR(10106, "保存失败");
 
     public int code;
 

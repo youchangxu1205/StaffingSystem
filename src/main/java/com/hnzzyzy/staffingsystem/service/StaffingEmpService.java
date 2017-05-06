@@ -1,6 +1,8 @@
 package com.hnzzyzy.staffingsystem.service;
 
 import com.hnzzyzy.staffingsystem.entity.StaffingEmp;
+import com.hnzzyzy.staffingsystem.exception.InsertErrorException;
+import com.hnzzyzy.staffingsystem.exception.UserNameExitException;
 
 import java.util.List;
 
@@ -20,12 +22,15 @@ public interface StaffingEmpService {
 
     /**
      * 获取个数
-     * @return
+     *
      * @param staffingEmp
+     * @return
      */
     long getAllCount(StaffingEmp staffingEmp);
 
     StaffingEmp getEmpById(long empId);
+
+    int insertEmp(StaffingEmp staffingEmp) throws UserNameExitException,InsertErrorException;
 
 
 }

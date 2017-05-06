@@ -2,6 +2,8 @@ package com.hnzzyzy.staffingsystem.service.impl;
 
 import com.hnzzyzy.staffingsystem.dao.StaffingEmpMapper;
 import com.hnzzyzy.staffingsystem.entity.StaffingEmp;
+import com.hnzzyzy.staffingsystem.exception.InsertErrorException;
+import com.hnzzyzy.staffingsystem.exception.UserNameExitException;
 import com.hnzzyzy.staffingsystem.service.StaffingEmpService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,7 +26,7 @@ public class StaffingEmpServiceImpl implements StaffingEmpService {
         if (offset == null) {
             offset = 0;
         }
-        return staffingEmpMapper.queryEmpByPage(limit, offset,sortByOrder, staffingEmp);
+        return staffingEmpMapper.queryEmpByPage(limit, offset, sortByOrder, staffingEmp);
     }
 
     @Override
@@ -34,5 +36,18 @@ public class StaffingEmpServiceImpl implements StaffingEmpService {
 
     public StaffingEmp getEmpById(long empId) {
         return staffingEmpMapper.queryEmpById(empId);
+    }
+
+    @Override
+    public int insertEmp(StaffingEmp staffingEmp) throws UserNameExitException ,InsertErrorException{
+        StaffingEmp sqlEmp = staffingEmpMapper.queryEmpByUsername(staffingEmp.getUserName());
+        if (sqlEmp != null) {
+            throw new UserNameExitException("用户名已存在");
+        }
+        int count = staffingEmpMapper.insertEmp(staffingEmp);
+        if(count==0){
+            throw new InsertErrorException("保存失败");
+        }
+        return count;
     }
 }

@@ -9,6 +9,7 @@ public class StaffingEmp {
     private long empId;//员工ID
     private String empName;//员工姓名
     private String empPhone;//员工手机号
+    private String userName;//员工登录名
     private String empAvatarUrl;//员工头像
     private int empStatus;//员工状态
     private String otherInfo;//其他信息
@@ -39,6 +40,14 @@ public class StaffingEmp {
 
     public void setEmpPhone(String empPhone) {
         this.empPhone = empPhone;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getEmpAvatarUrl() {
@@ -100,16 +109,18 @@ public class StaffingEmp {
     public StaffingEmp() {
     }
 
-    public StaffingEmp( String empName, String empPhone, String empAvatarUrl, int empStatus) {
+    public StaffingEmp( String empName, String empPhone,String userName, String empAvatarUrl, int empStatus) {
         this.empName = empName;
         this.empPhone = empPhone;
+        this.userName = userName;
         this.empAvatarUrl = empAvatarUrl;
         this.empStatus = empStatus;
     }
 
-    public StaffingEmp(String empName, String empPhone, String empAvatarUrl, int empStatus, String otherInfo, Date entryTime, Date beFormalTime) {
+    public StaffingEmp(String empName, String empPhone,String userName, String empAvatarUrl, int empStatus, String otherInfo, Date entryTime, Date beFormalTime) {
         this.empName = empName;
         this.empPhone = empPhone;
+        this.userName = userName;
         this.empAvatarUrl = empAvatarUrl;
         this.empStatus = empStatus;
         this.otherInfo = otherInfo;
@@ -128,16 +139,15 @@ public class StaffingEmp {
         this.beFormalTime = beFormalTime;
     }
 
-    public StaffingEmp(long empId, String empName, String empPhone, String empAvatarUrl, int empStatus, String otherInfo, Date createTime, Date entryTime, Date updateTime, Date beFormalTime) {
+    public StaffingEmp(long empId, String empName, String empPhone, String userName, String empAvatarUrl, int empStatus, String otherInfo, Date entryTime, Date beFormalTime) {
         this.empId = empId;
         this.empName = empName;
         this.empPhone = empPhone;
+        this.userName = userName;
         this.empAvatarUrl = empAvatarUrl;
         this.empStatus = empStatus;
         this.otherInfo = otherInfo;
-        this.createTime = createTime;
         this.entryTime = entryTime;
-        this.updateTime = updateTime;
         this.beFormalTime = beFormalTime;
     }
 

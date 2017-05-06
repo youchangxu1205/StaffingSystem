@@ -51,4 +51,6 @@ public interface StaffingEmpMapper {
      * @param staffingEmp
      */
     long queryAllCount(StaffingEmp staffingEmp);
+
+    StaffingEmp queryEmpByUsername(String userName);
 }
