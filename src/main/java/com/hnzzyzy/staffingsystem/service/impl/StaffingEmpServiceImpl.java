@@ -28,8 +28,8 @@ public class StaffingEmpServiceImpl implements StaffingEmpService {
     }
 
     @Override
-    public long getAllCount() {
-        return staffingEmpMapper.queryAllCount();
+    public long getAllCount(StaffingEmp staffingEmp) {
+        return staffingEmpMapper.queryAllCount(staffingEmp);
     }
 
     public StaffingEmp getEmpById(long empId) {

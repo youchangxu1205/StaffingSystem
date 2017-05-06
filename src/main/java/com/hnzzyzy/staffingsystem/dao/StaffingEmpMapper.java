@@ -48,6 +48,7 @@ public interface StaffingEmpMapper {
      * 查询总共的条数
      *
      * @return
+     * @param staffingEmp
      */
-    long queryAllCount();
+    long queryAllCount(StaffingEmp staffingEmp);
 }

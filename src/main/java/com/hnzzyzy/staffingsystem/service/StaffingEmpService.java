@@ -21,8 +21,9 @@ public interface StaffingEmpService {
     /**
      * 获取个数
      * @return
+     * @param staffingEmp
      */
-    long getAllCount();
+    long getAllCount(StaffingEmp staffingEmp);
 
     StaffingEmp getEmpById(long empId);
 

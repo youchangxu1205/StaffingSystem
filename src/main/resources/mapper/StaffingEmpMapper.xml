@@ -6,6 +6,10 @@
     <select id="queryEmpByPage" resultType="StaffingEmp">
         SELECT *
         FROM staffing_emp
+        WHERE 1=1
+        <if test="staffingEmp.empStatus!=null and staffingEmp.empStatus!=0">
+            AND emp_status = #{staffingEmp.empStatus}
+        </if>
         <if test="sortByOrder!=null">
             ORDER BY ${sortByOrder}
         </if>
@@ -21,6 +25,10 @@
     <select id="queryAllCount" resultType="java.lang.Long">
         SELECT COUNT(*)
         FROM staffing_emp
+        WHERE 1=1
+        <if test="empStatus!=null and empStatus!=0">
+            AND emp_status=${empStatus}
+        </if>
     </select>
 
     <insert id="insertEmp">

@@ -18,9 +18,18 @@
 <body>
 <div id="main">
     <div id="toolbar">
-       <select>
 
-       </select>
+        <div>员工状态:
+            <select id="empStatus" name="empStatus" class="form-control" style="width: 100px" onchange="tableRefresh()">
+                <option value="1">在职</option>
+                <option value="0">全部</option>
+                <option value="2">试岗中</option>
+                <option value="3">休长假</option>
+                <option value="-1">离职</option>
+                <option value="-2">试岗离开</option>
+            </select>
+        </div>
+
     </div>
     <table id="table"></table>
 </div>
@@ -33,13 +42,13 @@
             url: '${basePath}/emp/list',
             height: getHeight(),
             striped: true,
-            search: true,
+//            search: true,
             showRefresh: true,
-            showColumns: true,
+//            showColumns: true,
             minimumCountColumns: 2,
             clickToSelect: true,
-            detailView: true,
-            detailFormatter: 'detailFormatter',
+//            detailView: true,
+//            detailFormatter: 'detailFormatter',
             pagination: true,
             queryParams: 'queryParams',
             paginationLoop: false,
@@ -47,7 +56,7 @@
             silentSort: false,
             smartDisplay: false,
             escape: true,
-            searchOnEnterKey: true,
+//            searchOnEnterKey: true,
             idField: 'empId',
             maintainSelected: true,
             toolbar: '#toolbar',
@@ -55,7 +64,9 @@
                 {field: 'ck', checkbox: true},
                 {field: 'empId', title: '编号', sortable: true, align: 'center'},
                 {field: 'empName', title: '员工姓名'},
-                {field: 'empStatus', title: '状态',sortable:true, formatter: 'statusFormatter'},
+                {field: 'entryTime', title: '入职时间', sortable: true, formatter: 'dateFormatter'},
+                {field: 'beFormalTime', title: '转正时间', sortable: true, formatter: 'dateFormatter'},
+                {field: 'empStatus', title: '状态', sortable: true, formatter: 'statusFormatter'},
                 {
                     field: 'action',
                     title: '操作',
@@ -67,9 +78,29 @@
             ]
         });
     });
-    
+
+    function tableRefresh() {
+        $table.bootstrapTable('refresh');
+    }
+
     function queryParams(params) {
-        return params;
+        var temp = {
+            limit: params.limit,
+            offset: params.offset,
+            sort: params.sort,
+            order: params.order,
+            empStatus: $("#empStatus").val()
+        }
+        return temp;
+    }
+
+    function dateFormatter(value, row, index) {
+        if (value == null || value == "")
+            return '<span class="label label-danger">未设置</span>';
+
+        var date = new Date(value);
+
+        return getFormatDate(date, "yyyy年MM月dd日 hh:mm:ss");
     }
 
     function statusFormatter(value, row, index) {
@@ -77,7 +108,7 @@
             return '<span class="label label-default">试岗离开</span>';
         } else if (value == -1) {
             return '<span class="label label-danger">离职</span>';
-        } else if (value == 0) {
+        } else if (value == 3) {
             return '<span class="label label-info">休长假</span>';
         } else if (value == 1) {
             return '<span class="label label-success">在职</span>';

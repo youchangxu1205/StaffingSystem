@@ -28,19 +28,24 @@ public class StaffingEmpController {
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ResponseBody
-    public Object list(int limit, int offset, String sort, String order,StaffingEmp staffingEmp) {
+    public Object list(int limit, int offset, String sort, String order, StaffingEmp staffingEmp) {
         String sortByOrder = null;
         if (sort != null && sort != "" && order != null && order != "") {
-            if(sort.equals("empId")){
-                sort="emp_id";
-            }else if(sort.equals("empStatus")){
-                sort="emp_status";
+            if (sort.equals("empId")) {
+                sort = "emp_id";
+            } else if (sort.equals("empStatus")) {
+                sort = "emp_status";
+            } else if (sort.equals("beFormalTime")) {
+                sort = "be_formal_time";
+            }
+            else if (sort.equals("entryTime")) {
+                sort = "entry_time";
             }
             sortByOrder = sort + " " + order;
         }
         List<StaffingEmp> rows =
                 staffingEmpService.getEmpListByPage(limit, offset, sortByOrder, staffingEmp);
-        long total = staffingEmpService.getAllCount();
+        long total = staffingEmpService.getAllCount(staffingEmp);
         Map<String, Object> result = new HashMap<>();
         result.put("rows", rows);
         result.put("total", total);
