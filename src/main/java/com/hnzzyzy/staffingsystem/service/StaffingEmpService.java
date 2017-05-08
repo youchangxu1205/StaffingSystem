@@ -2,6 +2,7 @@ package com.hnzzyzy.staffingsystem.service;
 
 import com.hnzzyzy.staffingsystem.entity.StaffingEmp;
 import com.hnzzyzy.staffingsystem.exception.InsertErrorException;
+import com.hnzzyzy.staffingsystem.exception.UpdateErrorException;
 import com.hnzzyzy.staffingsystem.exception.UserNameExitException;
 
 import java.util.List;
@@ -33,4 +34,5 @@ public interface StaffingEmpService {
     int insertEmp(StaffingEmp staffingEmp) throws UserNameExitException,InsertErrorException;
 
 
+    int updateEmp(StaffingEmp staffingEmp) throws UpdateErrorException;
 }

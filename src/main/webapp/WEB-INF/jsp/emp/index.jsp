@@ -101,7 +101,7 @@
 
         var date = new Date(value);
 
-        return getFormatDate(date, "yyyy年MM月dd日 hh:mm:ss");
+        return getFormatDate(date, "yyyy年MM月dd日");
     }
 
     function statusFormatter(value, row, index) {
@@ -157,7 +157,7 @@
             updateDialog = $.dialog({
                 animationSpeed: 300,
                 title: '编辑组织',
-                content: 'url:${basePath}/manage/organization/update/' + rows[0].organizationId,
+                content: 'url:${basePath}/emp/update/' + rows[0].empId,
                 onContentReady: function () {
                     initMaterialInput();
                 }

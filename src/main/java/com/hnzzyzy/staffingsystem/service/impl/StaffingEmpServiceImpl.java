@@ -3,6 +3,7 @@ package com.hnzzyzy.staffingsystem.service.impl;
 import com.hnzzyzy.staffingsystem.dao.StaffingEmpMapper;
 import com.hnzzyzy.staffingsystem.entity.StaffingEmp;
 import com.hnzzyzy.staffingsystem.exception.InsertErrorException;
+import com.hnzzyzy.staffingsystem.exception.UpdateErrorException;
 import com.hnzzyzy.staffingsystem.exception.UserNameExitException;
 import com.hnzzyzy.staffingsystem.service.StaffingEmpService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,14 +40,24 @@ public class StaffingEmpServiceImpl implements StaffingEmpService {
     }
 
     @Override
-    public int insertEmp(StaffingEmp staffingEmp) throws UserNameExitException ,InsertErrorException{
+    public int insertEmp(StaffingEmp staffingEmp) throws UserNameExitException, InsertErrorException {
         StaffingEmp sqlEmp = staffingEmpMapper.queryEmpByUsername(staffingEmp.getUserName());
         if (sqlEmp != null) {
             throw new UserNameExitException("用户名已存在");
         }
         int count = staffingEmpMapper.insertEmp(staffingEmp);
-        if(count==0){
+        if (count == 0) {
             throw new InsertErrorException("保存失败");
+        }
+        return count;
+    }
+
+    @Override
+    public int updateEmp(StaffingEmp staffingEmp) throws  UpdateErrorException {
+
+        int count = staffingEmpMapper.updateEmp(staffingEmp);
+        if (count == 0) {
+            throw new UpdateErrorException("修改失败");
         }
         return count;
     }

@@ -11,6 +11,6 @@
     <select id="queryChildOrgById" resultType="StaffingOrg">
         SELECT *
         FROM staffing_org
-        WHERE p_org = #{orgId}
+        WHERE p_org_id = #{orgId}
     </select>
 </mapper>

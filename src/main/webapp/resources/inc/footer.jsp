@@ -17,3 +17,5 @@
 <script src="${basePath}/resources/zheng-admin/plugins/zTree_v3/js/jquery.ztree.all.min.js"></script>
 <script src="${basePath}/resources/zheng-admin/js/common.js"></script>
 <script src="${basePath}/resources/zheng-admin/plugins/bootstrap-table-1.11.0/filter-control/bootstrap-table-filter-control.js"></script>
+<script src="${basePath}/resources/zheng-admin/plugins/bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.min.js"></script>
+<script src="${basePath}/resources/zheng-admin/plugins/bootstrap-datetimepicker-master/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>

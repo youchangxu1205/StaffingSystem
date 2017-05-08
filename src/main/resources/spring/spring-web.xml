@@ -10,7 +10,18 @@
         (1)自动注册DefaultAnnotationHandlerMapping,AnnotationMethodHandlerAdapter
         (2)提供一系列:数据绑定,数字和日期的format
             xml.json默认读写支持-->
-    <mvc:annotation-driven/>
+    <mvc:annotation-driven conversion-service="conversionService"/>
+
+    <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <property name="converters">
+            <set>
+                <ref bean="dateConvert"/>
+            </set>
+        </property>
+    </bean>
+    <!-- 第一步:  创建自定义日期转换规则 -->
+    <bean id="dateConvert" class="com.hnzzyzy.staffingsystem.convert.DateConvert"/>
+
     <!--静态资源配置
         1.加入对静态资源的处理
         2.允许使用"/"做整体映射-->

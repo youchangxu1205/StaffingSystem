@@ -8,23 +8,23 @@ import java.util.Date;
 public class StaffingOrg {
     private long orgId;
     private String orgName;
-    private long pOrg;
+    private long pOrgId;
     private Date createTime;
     private int orgType;
 
     public StaffingOrg() {
     }
 
-    public StaffingOrg(long orgId, String orgName, long pOrg) {
+    public StaffingOrg(long orgId, String orgName, long pOrgId) {
         this.orgId = orgId;
         this.orgName = orgName;
-        this.pOrg = pOrg;
+        this.pOrgId = pOrgId;
     }
 
-    public StaffingOrg(long orgId, String orgName, long pOrg, Date createTime, int orgType) {
+    public StaffingOrg(long orgId, String orgName, long pOrgId, Date createTime, int orgType) {
         this.orgId = orgId;
         this.orgName = orgName;
-        this.pOrg = pOrg;
+        this.pOrgId = pOrgId;
         this.createTime = createTime;
         this.orgType = orgType;
     }
@@ -45,12 +45,12 @@ public class StaffingOrg {
         this.orgName = orgName;
     }
 
-    public long getpOrg() {
-        return pOrg;
+    public long getpOrgId() {
+        return pOrgId;
     }
 
-    public void setpOrg(long pOrg) {
-        this.pOrg = pOrg;
+    public void setpOrgId(long pOrgId) {
+        this.pOrgId = pOrgId;
     }
 
     public Date getCreateTime() {
@@ -74,7 +74,7 @@ public class StaffingOrg {
         return "StaffingOrg{" +
                 "orgId=" + orgId +
                 ", orgName='" + orgName + '\'' +
-                ", pOrg=" + pOrg +
+                ", pOrgId=" + pOrgId +
                 ", createTime=" + createTime +
                 ", orgType=" + orgType +
                 '}';

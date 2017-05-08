@@ -8,6 +8,8 @@ import com.hnzzyzy.staffingsystem.exception.UserNameExitException;
 import com.hnzzyzy.staffingsystem.service.StaffingEmpService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -41,8 +43,7 @@ public class StaffingEmpController {
                 sort = "emp_status";
             } else if (sort.equals("beFormalTime")) {
                 sort = "be_formal_time";
-            }
-            else if (sort.equals("entryTime")) {
+            } else if (sort.equals("entryTime")) {
                 sort = "entry_time";
             }
             sortByOrder = sort + " " + order;
@@ -55,22 +56,45 @@ public class StaffingEmpController {
         result.put("total", total);
         return result;
     }
+
     @RequestMapping(value = "/create", method = RequestMethod.GET)
-    public String create(){
+    public String create() {
         return "/emp/create";
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public Object createPost(StaffingEmp staffingEmp){
+    @ResponseBody
+    public Object create(StaffingEmp staffingEmp) {
 
         try {
             staffingEmpService.insertEmp(staffingEmp);
         } catch (UserNameExitException e) {
-            return new StaffingSystemResult(StaffingSystemResultConstant.USERNAME_IS_EXITED,e);
-        } catch (InsertErrorException e){
-            return new StaffingSystemResult(StaffingSystemResultConstant.INSERT_ERROR,e);
+            return new StaffingSystemResult(StaffingSystemResultConstant.USERNAME_IS_EXITED, e);
+        } catch (InsertErrorException e) {
+            return new StaffingSystemResult(StaffingSystemResultConstant.INSERT_ERROR, e);
         }
 
-        return new StaffingSystemResult(StaffingSystemResultConstant.SUCCESS,null);
+        return new StaffingSystemResult(StaffingSystemResultConstant.SUCCESS, "");
     }
+
+    @RequestMapping(value = "/update/{empId}", method = RequestMethod.GET)
+    public String update(Model model, @PathVariable("empId") long empId) {
+        StaffingEmp staffingEmp = staffingEmpService.getEmpById(empId);
+        model.addAttribute("staffingEmp", staffingEmp);
+        return "/emp/update";
+    }
+
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    @ResponseBody
+    public Object update(StaffingEmp staffingEmp) {
+
+        try {
+            staffingEmpService.updateEmp(staffingEmp);
+        } catch (InsertErrorException e) {
+            return new StaffingSystemResult(StaffingSystemResultConstant.INSERT_ERROR, e);
+        }
+
+        return new StaffingSystemResult(StaffingSystemResultConstant.SUCCESS, "");
+    }
+
 }

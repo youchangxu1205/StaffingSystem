@@ -24,7 +24,7 @@
     <select id="queryEmpByUsername" resultType="StaffingEmp">
         SELECT *
         FROM staffing_emp
-        WHERE emp_name = #{empName}
+        WHERE user_name = #{userName}
     </select>
 
     <select id="queryAllCount" resultType="java.lang.Long">
@@ -43,6 +43,9 @@
     <update id="updateEmp">
         UPDATE staffing_emp
         <set>
+            <if test="userName!=null">
+                user_name=#{userName},
+            </if>
             <if test="empName!=null">
                 emp_name=#{empName},
             </if>
