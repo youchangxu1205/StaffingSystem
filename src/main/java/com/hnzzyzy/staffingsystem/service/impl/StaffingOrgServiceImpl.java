@@ -66,4 +66,14 @@ public class StaffingOrgServiceImpl implements StaffingOrgService {
         return staffingOrgMapper.queryChildOrgById(orgId);
     }
 
+    @Override
+    public List<StaffingOrg> getOrgListByPage(int limit, int offset, String sortByOrder, StaffingOrg staffingOrg) {
+        return  staffingOrgMapper.queryOrgByPage(limit,offset,sortByOrder,staffingOrg);
+    }
+
+    @Override
+    public long getAllCount(StaffingOrg staffingOrg) {
+        return staffingOrgMapper.queryCount(staffingOrg);
+    }
+
 }

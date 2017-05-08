@@ -13,4 +13,17 @@
         FROM staffing_org
         WHERE p_org_id = #{orgId}
     </select>
+    <select id="queryOrgByPage" resultType="StaffingOrg">
+        SELECT *
+        FROM staffing_org
+        WHERE 1=1
+        <if test="sortByOrder!=null">
+            ORDER BY ${sortByOrder}
+        </if>
+        LIMIT #{offset}, #{limit}
+    </select>
+    <select id="queryCount" resultType="java.lang.Long">
+        SELECT COUNT(*)
+        FROM staffing_org
+    </select>
 </mapper>

@@ -29,4 +29,8 @@ public interface StaffingOrgService {
      * @return
      */
     List<StaffingOrg> getChildOrgById(Long orgId);
+
+    List<StaffingOrg> getOrgListByPage(int limit, int offset, String sortByOrder, StaffingOrg staffingOrg);
+
+    long getAllCount(StaffingOrg staffingOrg);
 }

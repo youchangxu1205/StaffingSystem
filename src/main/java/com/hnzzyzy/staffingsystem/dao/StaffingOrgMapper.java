@@ -1,6 +1,7 @@
 package com.hnzzyzy.staffingsystem.dao;
 
 import com.hnzzyzy.staffingsystem.entity.StaffingOrg;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -24,4 +25,7 @@ public interface StaffingOrgMapper {
     List<StaffingOrg> queryChildOrgById(long orgId);
 
 
+    List<StaffingOrg> queryOrgByPage(@Param("limit") int limit, @Param("offset") int offset, @Param("sortByOrder") String sortByOrder, @Param("staffingOrg") StaffingOrg staffingOrg);
+
+    long queryCount(StaffingOrg staffingOrg);
 }
