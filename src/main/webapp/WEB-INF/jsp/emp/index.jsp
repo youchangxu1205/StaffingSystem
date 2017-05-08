@@ -64,6 +64,7 @@
             columns: [
                 {field: 'ck', checkbox: true},
                 {field: 'empId', title: '编号', sortable: true, align: 'center'},
+                {field: 'userName', title: '账户名'},
                 {field: 'empName', title: '员工姓名'},
                 {field: 'entryTime', title: '入职时间', sortable: true, formatter: 'dateFormatter'},
                 {field: 'beFormalTime', title: '转正时间', sortable: true, formatter: 'dateFormatter'},

@@ -8,6 +8,7 @@
 <c:set var="basePath" value="${pageContext.request.contextPath}"/>
 <div id="updateDialog" class="crudDialog">
     <form id="updateForm" method="post">
+        <label class="label label-danger" id="error"></label>
         <input id="empId" type="hidden" name="empId" value="${staffingEmp.empId}">
         <div class="form-group">
             <label for="userName">账户名</label>
@@ -69,18 +70,17 @@
             beforeSend: function () {
                 if ($('#userName').val() == '') {
                     $('#userName').focus();
+                    $('#error').val("用户名不能为空");
                     return false;
                 }
                 if ($('#empName').val() == '') {
                     $('#empName').focus();
+                    $('#error').val("员工名不能为空");
                     return false;
                 }
                 if ($('#entryTime').val() == '') {
                     $('#entryTime').focus();
-                    return false;
-                }
-                if ($('#entryTime').val() > $('#beFormalTime').val()) {
-                    alert("入职时间必须在转正时间之前");
+                    $('#error').val("入职时间不能为空");
                     return false;
                 }
             },

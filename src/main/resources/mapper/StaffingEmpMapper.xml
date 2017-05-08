@@ -52,6 +52,9 @@
             <if test="empPhone!=null">
                 emp_phone=#{empPhone},
             </if>
+            <if test="empStatus!=null">
+                emp_status=#{empStatus},
+            </if>
             <if test="empAvatarUrl!=null">
                 emp_avatar_url=#{empAvatarUrl},
             </if>

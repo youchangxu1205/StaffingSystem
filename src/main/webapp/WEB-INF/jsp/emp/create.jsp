@@ -8,6 +8,7 @@
 <c:set var="basePath" value="${pageContext.request.contextPath}"/>
 <div id="createDialog" class="crudDialog">
     <form id="createForm" method="post">
+        <label class="label label-danger" id="error"></label>
         <div class="form-group">
             <label for="userName">账户名</label>
             <input id="userName" type="text" class="form-control" name="userName" maxlength="20">
@@ -22,10 +23,10 @@
         </div>
 
         <div class="form-group">入职时间:
-            <input id="entryTime" name="entryTime" type="date" class="form-control">
+            <input type="text" id="entryTime" name="entryTime" class="form-control">
         </div>
         <div class="form-group">转正时间:
-            <input id="beFormalTime" name="beFormalTime" type="date" class="form-control">
+            <input type="text" id="beFormalTime" name="beFormalTime" class="form-control">
         </div>
         <div class="form-group">员工状态:
             <select id="empStatus" name="empStatus" class="form-control">
@@ -53,6 +54,8 @@
     </form>
 </div>
 <script>
+    initDateInput($('#entryTime'));
+    initDateInput($('#beFormalTime'));
     function createSubmit() {
         $.ajax({
             type: 'post',
@@ -61,21 +64,19 @@
             beforeSend: function () {
                 if ($('#userName').val() == '') {
                     $('#userName').focus();
+                    $('#error').val("用户名不能为空");
                     return false;
                 }
                 if ($('#empName').val() == '') {
                     $('#empName').focus();
+                    $('#error').val("员工名不能为空");
                     return false;
                 }
                 if ($('#entryTime').val() == '') {
                     $('#entryTime').focus();
+                    $('#error').val("入职时间不能为空");
                     return false;
                 }
-//                if ($('#beFormalTime').val() == '') {
-//                    $('#beFormalTime').focus();
-//                    return false;
-//                }
-//                alert($('#entryTime').val());
             },
             success: function (result) {
                 if (result.code != 1) {

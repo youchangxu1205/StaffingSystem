@@ -6,6 +6,8 @@ import com.hnzzyzy.staffingsystem.enums.StaffingSystemResultConstant;
 import com.hnzzyzy.staffingsystem.exception.InsertErrorException;
 import com.hnzzyzy.staffingsystem.exception.UserNameExitException;
 import com.hnzzyzy.staffingsystem.service.StaffingEmpService;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.HashMap;
 import java.util.List;
@@ -95,6 +98,11 @@ public class StaffingEmpController {
         }
 
         return new StaffingSystemResult(StaffingSystemResultConstant.SUCCESS, "");
+    }
+
+    public Object importEmp(MultipartFile file){
+        Workbook wb  = new HSSFWorkbook();
+        return "";
     }
 
 }
