@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50717
 File Encoding         : 65001
 
-Date: 2017-05-08 14:53:18
+Date: 2017-05-09 21:36:32
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -20,45 +20,36 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `staffing_emp`;
 CREATE TABLE `staffing_emp` (
-  `emp_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '员工ID',
-  `emp_name` varchar(50) COLLATE utf8_bin NOT NULL COMMENT '员工姓名',
-  `emp_phone` varchar(255) COLLATE utf8_bin DEFAULT NULL COMMENT '员工手机号',
-  `emp_avatar_url` varchar(255) COLLATE utf8_bin DEFAULT NULL COMMENT '员工头像',
-  `emp_status` tinyint(4) DEFAULT '1' COMMENT '员工状态:-2:离职 -1:试岗离开 1:试岗中 2:在职 3:休长假',
-  `other_info` text COLLATE utf8_bin COMMENT '员工其他信息,用json格式保存',
-  `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `entry_time` timestamp NULL DEFAULT NULL COMMENT '入职时间',
-  `update_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-  `be_formal_time` timestamp NULL DEFAULT NULL COMMENT '转正时间',
-  `user_name` varchar(50) COLLATE utf8_bin NOT NULL COMMENT '员工登录名',
-  PRIMARY KEY (`emp_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  `empId` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '员工ID',
+  `empName` varchar(50) COLLATE utf8_bin NOT NULL COMMENT '员工姓名',
+  `empPhone` varchar(255) COLLATE utf8_bin DEFAULT NULL COMMENT '员工手机号',
+  `empAvatarUrl` varchar(255) COLLATE utf8_bin DEFAULT NULL COMMENT '员工头像',
+  `empStatus` tinyint(4) DEFAULT '1' COMMENT '员工状态:-2:离职 -1:试岗离开 1:试岗中 2:在职 3:休长假',
+  `otherInfo` text COLLATE utf8_bin COMMENT '员工其他信息,用json格式保存',
+  `createTime` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `entryTime` timestamp NULL DEFAULT NULL COMMENT '入职时间',
+  `updateTime` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `beFormalTime` timestamp NULL DEFAULT NULL COMMENT '转正时间',
+  `userName` varchar(50) COLLATE utf8_bin NOT NULL COMMENT '员工登录名',
+  PRIMARY KEY (`empId`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of staffing_emp
 -- ----------------------------
-INSERT INTO `staffing_emp` VALUES ('1', '徐长友', '18697325393', null, '3', null, '2017-05-05 17:25:04', null, '2017-05-06 10:10:35', null, 'xuchangyou');
-INSERT INTO `staffing_emp` VALUES ('2', '李康1', '13523016867', '', '2', '', '2017-05-05 17:43:51', '2017-05-05 17:55:02', '2017-05-06 10:10:43', '2017-05-05 17:56:29', 'likang1');
-INSERT INTO `staffing_emp` VALUES ('3', '李康3', '13523016867', '', '1', '', '2017-05-05 17:58:05', '2017-05-05 17:58:06', '2017-05-06 10:10:49', '2017-05-05 17:58:06', 'likang3');
-INSERT INTO `staffing_emp` VALUES ('4', '王五', '15538003366', null, '-1', null, '2017-05-06 09:23:40', null, '2017-05-06 10:10:52', null, 'wangwu');
-INSERT INTO `staffing_emp` VALUES ('5', '赵四', '13833003366', null, '-2', null, '2017-05-06 09:24:10', null, '2017-05-06 10:10:55', null, 'zhaosi');
-INSERT INTO `staffing_emp` VALUES ('6', '123', null, null, '1', null, '2017-05-06 11:50:16', '2017-05-01 00:00:00', '2017-05-08 14:51:37', '2017-05-11 00:00:00', '123');
-INSERT INTO `staffing_emp` VALUES ('7', '111', null, null, '1', null, '2017-05-08 11:00:59', '2017-05-08 00:00:00', '2017-05-08 14:52:22', '2017-05-08 00:00:00', '1');
-INSERT INTO `staffing_emp` VALUES ('8', '123', null, null, '1', null, '2017-05-08 11:02:28', null, '2017-05-08 11:02:28', null, '1');
-INSERT INTO `staffing_emp` VALUES ('9', '123', null, null, '1', null, '2017-05-08 11:04:22', null, '2017-05-08 11:04:22', null, '1234');
 
 -- ----------------------------
 -- Table structure for staffing_org
 -- ----------------------------
 DROP TABLE IF EXISTS `staffing_org`;
 CREATE TABLE `staffing_org` (
-  `org_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '部门ID',
-  `org_name` varchar(50) COLLATE utf8_bin NOT NULL COMMENT '部门名称',
-  `p_org_id` bigint(20) DEFAULT NULL COMMENT '上级部门',
-  `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `update_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-  `org_type` tinyint(4) DEFAULT NULL COMMENT '1为企业 2为部门',
-  PRIMARY KEY (`org_id`)
+  `orgId` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '部门ID',
+  `orgName` varchar(50) COLLATE utf8_bin NOT NULL COMMENT '部门名称',
+  `pOrgId` bigint(20) DEFAULT NULL COMMENT '上级部门',
+  `createTime` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updateTime` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `orgType` tinyint(4) DEFAULT NULL COMMENT '1为企业 2为部门',
+  PRIMARY KEY (`orgId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
@@ -73,15 +64,15 @@ INSERT INTO `staffing_org` VALUES ('3', '市场部', '1', '2017-05-08 09:03:49',
 -- ----------------------------
 DROP TABLE IF EXISTS `staffing_org_emp`;
 CREATE TABLE `staffing_org_emp` (
-  `org_id` bigint(20) NOT NULL COMMENT '部门ID',
-  `emp_id` bigint(20) NOT NULL COMMENT '员工ID',
+  `orgId` bigint(20) NOT NULL COMMENT '部门ID',
+  `empId` bigint(20) NOT NULL COMMENT '员工ID',
   `status` tinyint(4) DEFAULT '1' COMMENT '是否有效 1有效 2无效',
-  `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `update_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后一次更新时间',
-  PRIMARY KEY (`org_id`,`emp_id`),
-  KEY `org_emp_id` (`emp_id`),
-  CONSTRAINT `emp_org_id` FOREIGN KEY (`org_id`) REFERENCES `staffing_org` (`org_id`),
-  CONSTRAINT `org_emp_id` FOREIGN KEY (`emp_id`) REFERENCES `staffing_emp` (`emp_id`)
+  `createTime` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updateTime` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后一次更新时间',
+  PRIMARY KEY (`orgId`,`empId`),
+  KEY `org_emp_id` (`empId`),
+  CONSTRAINT `emp_org_id` FOREIGN KEY (`orgId`) REFERENCES `staffing_org` (`orgId`),
+  CONSTRAINT `org_emp_id` FOREIGN KEY (`empId`) REFERENCES `staffing_emp` (`empId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
@@ -89,15 +80,41 @@ CREATE TABLE `staffing_org_emp` (
 -- ----------------------------
 
 -- ----------------------------
+-- Table structure for staffing_permission
+-- ----------------------------
+DROP TABLE IF EXISTS `staffing_permission`;
+CREATE TABLE `staffing_permission` (
+  `permissionId` bigint(20) NOT NULL AUTO_INCREMENT,
+  `permissionName` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `permissionValue` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `permissionUri` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `permissionIcon` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `permissionStatus` tinyint(4) DEFAULT NULL,
+  `permissionType` tinyint(4) DEFAULT NULL,
+  `createTime` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `pPermissionId` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`permissionId`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of staffing_permission
+-- ----------------------------
+INSERT INTO `staffing_permission` VALUES ('1', '组织架构管理', null, null, null, '1', '1', '2017-05-09 21:15:45', '0');
+INSERT INTO `staffing_permission` VALUES ('2', '部门管理', null, '/org/index', null, '1', '2', '2017-05-09 21:16:13', '1');
+INSERT INTO `staffing_permission` VALUES ('3', '员工管理', null, '/emp/index', null, '1', '2', '2017-05-09 21:18:30', '1');
+INSERT INTO `staffing_permission` VALUES ('4', '权限角色管理', null, null, null, '1', '1', '2017-05-09 21:19:25', '0');
+INSERT INTO `staffing_permission` VALUES ('5', '权限管理', null, '/permission/index', null, '1', '2', '2017-05-09 21:19:47', '4');
+
+-- ----------------------------
 -- Table structure for staffing_post
 -- ----------------------------
 DROP TABLE IF EXISTS `staffing_post`;
 CREATE TABLE `staffing_post` (
-  `post_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '岗位ID',
-  `post_name` varchar(50) COLLATE utf8_bin DEFAULT NULL COMMENT '岗位名称',
-  `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `update_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后一次更新时间',
-  PRIMARY KEY (`post_id`)
+  `postId` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '岗位ID',
+  `postName` varchar(50) COLLATE utf8_bin DEFAULT NULL COMMENT '岗位名称',
+  `createTime` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updateTime` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后一次更新时间',
+  PRIMARY KEY (`postId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
@@ -109,15 +126,15 @@ CREATE TABLE `staffing_post` (
 -- ----------------------------
 DROP TABLE IF EXISTS `staffing_post_emp`;
 CREATE TABLE `staffing_post_emp` (
-  `post_id` bigint(20) NOT NULL COMMENT '岗位ID',
-  `emp_id` bigint(20) NOT NULL COMMENT '员工ID',
+  `postId` bigint(20) NOT NULL COMMENT '岗位ID',
+  `empId` bigint(20) NOT NULL COMMENT '员工ID',
   `status` tinyint(4) DEFAULT '1' COMMENT '是否有效 1 有效 0 无效',
-  `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `update_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后一次更新时间',
-  PRIMARY KEY (`post_id`,`emp_id`),
-  KEY `post_emp_id` (`emp_id`),
-  CONSTRAINT `emp_post_id` FOREIGN KEY (`post_id`) REFERENCES `staffing_post` (`post_id`),
-  CONSTRAINT `post_emp_id` FOREIGN KEY (`emp_id`) REFERENCES `staffing_emp` (`emp_id`)
+  `createTime` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updateTime` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后一次更新时间',
+  PRIMARY KEY (`postId`,`empId`),
+  KEY `post_emp_id` (`empId`),
+  CONSTRAINT `emp_post_id` FOREIGN KEY (`postId`) REFERENCES `staffing_post` (`postId`),
+  CONSTRAINT `post_emp_id` FOREIGN KEY (`empId`) REFERENCES `staffing_emp` (`empId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
