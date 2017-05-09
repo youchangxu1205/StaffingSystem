@@ -32,7 +32,7 @@ public class StaffingPermissionController {
     public Object list(int limit, int offset, String sort, String order,StaffingPermission staffingPermission) {
         EntityWrapper<StaffingPermission> entityWrapper = new EntityWrapper<>(staffingPermission);
         entityWrapper.orderBy(sort,true);
-        List<StaffingPermission> permissions = staffingPermissionService.getPermissions(entityWrapper);
+        List<StaffingPermission> permissions = staffingPermissionService.getPermissions();
         int total = staffingPermissionService.queryAllCount();
         Map<String, Object> result = new HashMap<>();
         result.put("rows", permissions);

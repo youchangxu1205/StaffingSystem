@@ -19,9 +19,9 @@ public class StaffingPermissionServiceImpl implements StaffingPermissionService 
     private StaffingPermissionMapper staffingPermissionMapper;
 
     @Override
-    public List<StaffingPermission> getPermissions(EntityWrapper<StaffingPermission> entityWrapper) {
+    public List<StaffingPermission> getPermissions() {
 
-        return staffingPermissionMapper.selectList(entityWrapper);
+        return staffingPermissionMapper.selectList(new EntityWrapper<StaffingPermission>());
     }
 
     @Override

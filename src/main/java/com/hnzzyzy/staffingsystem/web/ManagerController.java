@@ -19,7 +19,7 @@ public class ManagerController {
 
     @RequestMapping(value = "/index")
     public String index(Model model) {
-        List<StaffingPermission> permissions = staffingPermissionService.getPermissions(entityWrapper);
+        List<StaffingPermission> permissions = staffingPermissionService.getPermissions();
         model.addAttribute("permissions", permissions);
         return "/index";
     }

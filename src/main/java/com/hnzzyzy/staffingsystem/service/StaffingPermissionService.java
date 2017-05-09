@@ -10,7 +10,7 @@ import java.util.List;
  */
 public interface StaffingPermissionService {
 
-    List<StaffingPermission> getPermissions(EntityWrapper<StaffingPermission> entityWrapper);
+    List<StaffingPermission> getPermissions();
 
     int queryAllCount();
 }

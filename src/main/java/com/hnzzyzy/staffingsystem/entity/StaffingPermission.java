@@ -16,7 +16,7 @@ public class StaffingPermission {
     private String permissionValue;
     private String permissionUri;
     private String permissionIcon;
-    private String permissionStatus;
+    private int permissionStatus;
     private int permissionType;
     private Date createTime;
     private long pPermissionId;
@@ -62,11 +62,11 @@ public class StaffingPermission {
         this.permissionIcon = permissionIcon;
     }
 
-    public String getPermissionStatus() {
+    public int getPermissionStatus() {
         return permissionStatus;
     }
 
-    public void setPermissionStatus(String permissionStatus) {
+    public void setPermissionStatus(int permissionStatus) {
         this.permissionStatus = permissionStatus;
     }
 
