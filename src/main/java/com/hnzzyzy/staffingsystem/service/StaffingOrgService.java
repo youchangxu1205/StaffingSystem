@@ -32,5 +32,8 @@ public interface StaffingOrgService {
 
     List<StaffingOrg> getOrgListByPage(int limit, int offset, String sortByOrder, StaffingOrg staffingOrg);
 
+    int insertOrg(StaffingOrg staffingOrg);
+    int updateOrg(StaffingOrg staffingOrg);
+
     long getAllCount(StaffingOrg staffingOrg);
 }

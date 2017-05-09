@@ -19,16 +19,16 @@
 <div id="main">
     <div id="toolbar">
 
-        <%--<button type="button" class="btn btn-default" onclick="createAction()">添加员工</button>--%>
+        <button type="button" class="btn btn-default" onclick="createAction()">添加部门</button>
         <%--员工状态:--%>
         <%--<select id="empStatus" name="empStatus" class="form-control" style="width: 100px"--%>
-                <%--onchange="tableRefresh()">--%>
-            <%--<option value="1">在职</option>--%>
-            <%--<option value="0">全部</option>--%>
-            <%--<option value="2">试岗中</option>--%>
-            <%--<option value="3">休长假</option>--%>
-            <%--<option value="-1">离职</option>--%>
-            <%--<option value="-2">试岗离开</option>--%>
+        <%--onchange="tableRefresh()">--%>
+        <%--<option value="1">在职</option>--%>
+        <%--<option value="0">全部</option>--%>
+        <%--<option value="2">试岗中</option>--%>
+        <%--<option value="3">休长假</option>--%>
+        <%--<option value="-1">离职</option>--%>
+        <%--<option value="-2">试岗离开</option>--%>
         <%--</select>--%>
 
     </div>
@@ -43,13 +43,9 @@
             url: '${basePath}/org/list',
             height: getHeight(),
             striped: true,
-//            search: true,
             showRefresh: true,
-//            showColumns: true,
             minimumCountColumns: 2,
             clickToSelect: true,
-//            detailView: true,
-//            detailFormatter: 'detailFormatter',
             pagination: true,
             queryParams: 'queryParams',
             paginationLoop: false,
@@ -57,7 +53,6 @@
             silentSort: false,
             smartDisplay: false,
             escape: true,
-//            searchOnEnterKey: true,
             idField: 'orgId',
             maintainSelected: true,
             toolbar: '#toolbar',

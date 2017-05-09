@@ -1,5 +1,6 @@
 package com.hnzzyzy.staffingsystem.dao;
 
+import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.hnzzyzy.staffingsystem.entity.StaffingOrg;
 import org.apache.ibatis.annotations.Param;
 
@@ -8,7 +9,7 @@ import java.util.List;
 /**
  * Created by xcy on 2017/5/7.
  */
-public interface StaffingOrgMapper {
+public interface StaffingOrgMapper extends BaseMapper<StaffingOrg> {
 
     /**
      * 根据主键查询ID

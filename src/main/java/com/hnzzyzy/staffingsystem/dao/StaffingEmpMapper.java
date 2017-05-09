@@ -1,5 +1,6 @@
 package com.hnzzyzy.staffingsystem.dao;
 
+import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.hnzzyzy.staffingsystem.entity.StaffingEmp;
 import org.apache.ibatis.annotations.Param;
 
@@ -9,7 +10,7 @@ import java.util.List;
  * 员工
  * Created by dtkj_android on 2017/5/5.
  */
-public interface StaffingEmpMapper {
+public interface StaffingEmpMapper extends BaseMapper<StaffingEmp> {
     /**
      * 分页查询员工
      *

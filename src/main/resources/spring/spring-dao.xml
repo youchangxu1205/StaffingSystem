@@ -29,7 +29,7 @@
     </bean>
     <!--约定大于配置-->
     <!--配置sqlSessionFactory-->
-    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+    <bean id="sqlSessionFactory" class="com.baomidou.mybatisplus.spring.MybatisSqlSessionFactoryBean">
         <!--注入数据库连接池-->
         <property name="dataSource" ref="dataSource"/>
         <!--配置mybatis全局配置文件-->
@@ -38,7 +38,27 @@
         <property name="typeAliasesPackage" value="com.hnzzyzy.staffingsystem.entity"/>
         <!--扫描sql配置文件 mapper需要的xml文件-->
         <property name="mapperLocations" value="classpath:mapper/*.xml"/>
+
+        <property name="plugins">
+            <array>
+                <!-- 分页插件配置 -->
+                <bean id="paginationInterceptor" class="com.baomidou.mybatisplus.plugins.PaginationInterceptor">
+                    <!-- 指定数据库方言 -->
+                    <property name="dialectType" value="mysql"/>
+                </bean>
+                <!-- 如需要开启其他插件，可配置于此 -->
+            </array>
+        </property>
+
+        <property name="globalConfig" ref="globalConfig"/>
     </bean>
+
+    <!-- 定义 MP 全局策略 -->
+    <bean id="globalConfig" class="com.baomidou.mybatisplus.entity.GlobalConfiguration">
+        <property name="idType" value="0"/>
+        <property name="dbColumnUnderline" value="true"/>
+    </bean>
+
     <!--配置扫描Dao接口包动态实现Dao接口,注入spring容器-->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <!--注入sqlSessionFactory-->
@@ -50,7 +70,7 @@
     <!--&lt;!&ndash;RedisDao&ndash;&gt;-->
     <!--<bean id="redisDao" class="top.youchangxu.demo.dao.cache.RedisDao">-->
 
-        <!--<constructor-arg index="0" value="localhost"/>-->
-        <!--<constructor-arg index="1" value="6379"/>-->
+    <!--<constructor-arg index="0" value="localhost"/>-->
+    <!--<constructor-arg index="1" value="6379"/>-->
     <!--</bean>-->
 </beans>

@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -94,15 +96,20 @@ public class StaffingEmpController {
         try {
             staffingEmpService.updateEmp(staffingEmp);
         } catch (InsertErrorException e) {
-            return new StaffingSystemResult(StaffingSystemResultConstant.INSERT_ERROR, e);
+            return new StaffingSystemResult(StaffingSystemResultConstant.UPDATE_ERROR, e);
         }
 
         return new StaffingSystemResult(StaffingSystemResultConstant.SUCCESS, "");
     }
 
 
-    public Object importEmp(MultipartFile file){
-        Workbook wb  = new HSSFWorkbook();
+    public Object importEmp(MultipartFile file) {
+        try {
+            InputStream inputStream = file.getInputStream();
+            Workbook wb = new HSSFWorkbook(inputStream);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return "";
     }
 

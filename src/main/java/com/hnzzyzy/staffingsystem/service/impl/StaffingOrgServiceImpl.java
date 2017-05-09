@@ -2,6 +2,7 @@ package com.hnzzyzy.staffingsystem.service.impl;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.hnzzyzy.staffingsystem.dao.StaffingOrgMapper;
 import com.hnzzyzy.staffingsystem.entity.StaffingOrg;
 import com.hnzzyzy.staffingsystem.service.StaffingOrgService;
@@ -69,6 +70,18 @@ public class StaffingOrgServiceImpl implements StaffingOrgService {
     @Override
     public List<StaffingOrg> getOrgListByPage(int limit, int offset, String sortByOrder, StaffingOrg staffingOrg) {
         return  staffingOrgMapper.queryOrgByPage(limit,offset,sortByOrder,staffingOrg);
+    }
+
+    @Override
+    public int insertOrg(StaffingOrg staffingOrg) {
+        Integer insert = staffingOrgMapper.insert(staffingOrg);
+        return insert;
+    }
+
+    @Override
+    public int updateOrg(StaffingOrg staffingOrg) {
+        Integer integer = staffingOrgMapper.updateById(staffingOrg);
+        return integer;
     }
 
     @Override

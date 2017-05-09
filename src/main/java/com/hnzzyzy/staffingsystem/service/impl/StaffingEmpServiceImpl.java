@@ -1,11 +1,13 @@
 package com.hnzzyzy.staffingsystem.service.impl;
 
+import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.hnzzyzy.staffingsystem.dao.StaffingEmpMapper;
 import com.hnzzyzy.staffingsystem.entity.StaffingEmp;
 import com.hnzzyzy.staffingsystem.exception.InsertErrorException;
 import com.hnzzyzy.staffingsystem.exception.UpdateErrorException;
 import com.hnzzyzy.staffingsystem.exception.UserNameExitException;
 import com.hnzzyzy.staffingsystem.service.StaffingEmpService;
+import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -53,7 +55,7 @@ public class StaffingEmpServiceImpl implements StaffingEmpService {
     }
 
     @Override
-    public int updateEmp(StaffingEmp staffingEmp) throws  UpdateErrorException {
+    public int updateEmp(StaffingEmp staffingEmp) throws UpdateErrorException {
 
         int count = staffingEmpMapper.updateEmp(staffingEmp);
         if (count == 0) {
