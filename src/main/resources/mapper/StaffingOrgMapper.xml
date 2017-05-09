@@ -6,12 +6,12 @@
     <select id="queryOrgById" resultType="StaffingOrg">
         SELECT *
         FROM staffing_org
-        WHERE org_id = #{orgId}
+        WHERE orgId = #{orgId}
     </select>
     <select id="queryChildOrgById" resultType="StaffingOrg">
         SELECT *
         FROM staffing_org
-        WHERE p_org_id = #{orgId}
+        WHERE pOrgId = #{orgId}
     </select>
     <select id="queryOrgByPage" resultType="StaffingOrg">
         SELECT *

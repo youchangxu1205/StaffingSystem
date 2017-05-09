@@ -56,7 +56,7 @@ public class StaffingOrgController {
         return "/org/create";
     }
 
-    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    @RequestMapping(value = "/create", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public Object create(StaffingOrg staffingOrg) {
         int count = staffingOrgService.insertOrg(staffingOrg);
@@ -72,18 +72,17 @@ public class StaffingOrgController {
         model.addAttribute("staffingOrg", staffingOrg);
         return "/org/update";
     }
-    @RequestMapping(value = "/update",method = RequestMethod.POST)
+
+    @RequestMapping(value = "/update", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
-    public Object update(StaffingOrg staffingOrg){
+    public Object update(StaffingOrg staffingOrg) {
 
         int count = staffingOrgService.updateOrg(staffingOrg);
-        if(count==0){
-            return new StaffingSystemResult(StaffingSystemResultConstant.UPDATE_ERROR,"修改失败");
+        if (count == 0) {
+            return new StaffingSystemResult(StaffingSystemResultConstant.UPDATE_ERROR, "修改失败");
         }
-        return new StaffingSystemResult(StaffingSystemResultConstant.SUCCESS,"修改成功");
+        return new StaffingSystemResult(StaffingSystemResultConstant.SUCCESS, "修改成功");
     }
-
-
 
 
 }

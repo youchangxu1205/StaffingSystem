@@ -59,8 +59,8 @@
             columns: [
                 {field: 'ck', checkbox: true},
                 {field: 'orgId', title: '编号', sortable: true, align: 'center'},
-                {field: 'orgName', title: '账户名'},
-                {field: 'orgType', title: '部门类型'},
+                {field: 'orgName', title: '名称'},
+                {field: 'orgType', title: '类型', formatter: 'orgTypeFormatter'},
                 {field: 'pOrgId', title: '上级部门'},
                 {
                     field: 'action',
@@ -73,6 +73,15 @@
             ]
         });
     });
+
+
+    function orgTypeFormatter(value, row, index) {
+        if (value == 1) {
+            return '<span class="label label-success">公司</span>';
+        } else {
+            return '<span class="label label-warning">部门</span>';
+        }
+    }
 
     function tableRefresh() {
         $table.bootstrapTable('refresh');
@@ -88,14 +97,6 @@
         return temp;
     }
 
-    function dateFormatter(value, row, index) {
-        if (value == null || value == "")
-            return '<span class="label label-danger">未设置</span>';
-
-        var date = new Date(value);
-
-        return getFormatDate(date, "yyyy年MM月dd日");
-    }
     // 格式化操作按钮
     function actionFormatter(value, row, index) {
         return [

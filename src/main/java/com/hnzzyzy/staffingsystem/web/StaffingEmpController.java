@@ -42,15 +42,6 @@ public class StaffingEmpController {
     public Object list(int limit, int offset, String sort, String order, StaffingEmp staffingEmp) {
         String sortByOrder = null;
         if (sort != null && sort != "" && order != null && order != "") {
-            if (sort.equals("empId")) {
-                sort = "emp_id";
-            } else if (sort.equals("empStatus")) {
-                sort = "emp_status";
-            } else if (sort.equals("beFormalTime")) {
-                sort = "be_formal_time";
-            } else if (sort.equals("entryTime")) {
-                sort = "entry_time";
-            }
             sortByOrder = sort + " " + order;
         }
         List<StaffingEmp> rows =
@@ -67,7 +58,7 @@ public class StaffingEmpController {
         return "/emp/create";
     }
 
-    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    @RequestMapping(value = "/create", method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     @ResponseBody
     public Object create(StaffingEmp staffingEmp) {
 
@@ -89,7 +80,7 @@ public class StaffingEmpController {
         return "/emp/update";
     }
 
-    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    @RequestMapping(value = "/update", method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     @ResponseBody
     public Object update(StaffingEmp staffingEmp) {
 
@@ -98,8 +89,8 @@ public class StaffingEmpController {
         } catch (InsertErrorException e) {
             return new StaffingSystemResult(StaffingSystemResultConstant.UPDATE_ERROR, e);
         }
-
-        return new StaffingSystemResult(StaffingSystemResultConstant.SUCCESS, "");
+        StaffingSystemResult staffingSystemResult = new StaffingSystemResult(StaffingSystemResultConstant.SUCCESS, "");
+        return staffingSystemResult;
     }
 
 

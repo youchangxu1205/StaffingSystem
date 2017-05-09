@@ -108,7 +108,7 @@
                             animation: 'rotateX',
                             closeAnimation: 'rotateX',
                             title: false,
-                            content: result.data.detailMessage,
+                            content: result.data.message,
                             buttons: {
                                 confirm: {
                                     text: '确认',

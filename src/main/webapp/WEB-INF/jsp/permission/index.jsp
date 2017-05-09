@@ -12,24 +12,24 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>组织管理</title>
+    <title>权限管理</title>
     <jsp:include page="/resources/inc/head.jsp" flush="true"/>
 </head>
 <body>
 <div id="main">
     <div id="toolbar">
 
-        <button type="button" class="btn btn-default" onclick="createAction()">添加员工</button>
-        员工状态:
-        <select id="empStatus" name="empStatus" class="form-control" style="width: 100px"
-                onchange="tableRefresh()">
-            <option value="1">在职</option>
-            <option value="0">全部</option>
-            <option value="2">试岗中</option>
-            <option value="3">休长假</option>
-            <option value="-1">离职</option>
-            <option value="-2">试岗离开</option>
-        </select>
+        <%--<button type="button" class="btn btn-default" onclick="createAction()">添加部门</button>--%>
+        <%--员工状态:--%>
+        <%--<select id="empStatus" name="empStatus" class="form-control" style="width: 100px"--%>
+        <%--onchange="tableRefresh()">--%>
+        <%--<option value="1">在职</option>--%>
+        <%--<option value="0">全部</option>--%>
+        <%--<option value="2">试岗中</option>--%>
+        <%--<option value="3">休长假</option>--%>
+        <%--<option value="-1">离职</option>--%>
+        <%--<option value="-2">试岗离开</option>--%>
+        <%--</select>--%>
 
     </div>
     <table id="table"></table>
@@ -40,16 +40,12 @@
     $(function () {
         // bootstrap table初始化
         $table.bootstrapTable({
-            url: '${basePath}/emp/list',
+            url: '${basePath}/permission/list',
             height: getHeight(),
             striped: true,
-//            search: true,
             showRefresh: true,
-//            showColumns: true,
             minimumCountColumns: 2,
             clickToSelect: true,
-//            detailView: true,
-//            detailFormatter: 'detailFormatter',
             pagination: true,
             queryParams: 'queryParams',
             paginationLoop: false,
@@ -57,18 +53,14 @@
             silentSort: false,
             smartDisplay: false,
             escape: true,
-//            searchOnEnterKey: true,
-            idField: 'empId',
+            idField: 'permissionId',
             maintainSelected: true,
             toolbar: '#toolbar',
             columns: [
                 {field: 'ck', checkbox: true},
-                {field: 'empId', title: '编号', sortable: true, align: 'center'},
-                {field: 'userName', title: '账户名'},
-                {field: 'empName', title: '员工姓名'},
-                {field: 'entryTime', title: '入职时间', sortable: true, formatter: 'dateFormatter'},
-                {field: 'beFormalTime', title: '转正时间', sortable: true, formatter: 'dateFormatter'},
-                {field: 'empStatus', title: '状态', sortable: true, formatter: 'statusFormatter'},
+                {field: 'permissionId', title: '编号', sortable: true, align: 'center'},
+                {field: 'permissionName', title: '权限名称'},
+                {field: 'permissionType', title: '权限类型', formatter: 'typeFormatter'},
                 {
                     field: 'action',
                     title: '操作',
@@ -81,6 +73,17 @@
         });
     });
 
+
+    function typeFormatter(value, row, index) {
+        if (value == 1) {
+            return '<span class="label label-success">目录</span>';
+        } else if (value == 2) {
+            return '<span class="label label-warning">菜单</span>';
+        } else if (value == 3) {
+            return '<span class="label label-danger">按钮</span>';
+        }
+    }
+
     function tableRefresh() {
         $table.bootstrapTable('refresh');
     }
@@ -90,34 +93,11 @@
             limit: params.limit,
             offset: params.offset,
             sort: params.sort,
-            order: params.order,
-            empStatus: $("#empStatus").val()
+            order: params.order
         }
         return temp;
     }
 
-    function dateFormatter(value, row, index) {
-        if (value == null || value == "")
-            return '<span class="label label-danger">未设置</span>';
-
-        var date = new Date(value);
-
-        return getFormatDate(date, "yyyy年MM月dd日");
-    }
-
-    function statusFormatter(value, row, index) {
-        if (value == -2) {
-            return '<span class="label label-default">试岗离开</span>';
-        } else if (value == -1) {
-            return '<span class="label label-danger">离职</span>';
-        } else if (value == 3) {
-            return '<span class="label label-info">休长假</span>';
-        } else if (value == 1) {
-            return '<span class="label label-success">在职</span>';
-        } else if (value == 2) {
-            return '<span class="label label-primary">试岗中</span>';
-        }
-    }
     // 格式化操作按钮
     function actionFormatter(value, row, index) {
         return [
@@ -130,8 +110,8 @@
     function createAction() {
         createDialog = $.dialog({
             animationSpeed: 300,
-            title: '添加员工',
-            content: 'url:${basePath}/emp/create',
+            title: '添加部门',
+            content: 'url:${basePath}/org/create',
             onContentReady: function () {
                 initMaterialInput();
             }
@@ -157,8 +137,8 @@
         } else {
             updateDialog = $.dialog({
                 animationSpeed: 300,
-                title: '编辑员工',
-                content: 'url:${basePath}/emp/update/' + rows[0].empId,
+                title: '编辑组织',
+                content: 'url:${basePath}/org/update/' + rows[0].orgId,
                 onContentReady: function () {
                     initMaterialInput();
                 }
@@ -187,7 +167,7 @@
                 type: 'red',
                 animationSpeed: 300,
                 title: false,
-                content: '确认删除该员工吗？',
+                content: '确认删除该组织吗？',
                 buttons: {
                     confirm: {
                         text: '确认',

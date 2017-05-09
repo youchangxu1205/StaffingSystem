@@ -8,7 +8,7 @@
         FROM staffing_emp
         WHERE 1=1
         <if test="staffingEmp.empStatus!=null and staffingEmp.empStatus!=0">
-            AND emp_status = #{staffingEmp.empStatus}
+            AND empStatus = #{staffingEmp.empStatus}
         </if>
         <if test="sortByOrder!=null">
             ORDER BY ${sortByOrder}
@@ -19,12 +19,12 @@
     <select id="queryEmpById" resultType="StaffingEmp">
         SELECT *
         FROM staffing_emp
-        WHERE emp_id = #{empId}
+        WHERE empId = #{empId}
     </select>
     <select id="queryEmpByUsername" resultType="StaffingEmp">
         SELECT *
         FROM staffing_emp
-        WHERE user_name = #{userName}
+        WHERE userName = #{userName}
     </select>
 
     <select id="queryAllCount" resultType="java.lang.Long">
@@ -32,43 +32,43 @@
         FROM staffing_emp
         WHERE 1=1
         <if test="empStatus!=null and empStatus!=0">
-            AND emp_status=${empStatus}
+            AND empStatus=${empStatus}
         </if>
     </select>
 
     <insert id="insertEmp">
-        INSERT INTO staffing_emp (emp_name, emp_phone,user_name, emp_avatar_url, other_info, entry_time, be_formal_time)
+        INSERT INTO staffing_emp (empName, empPhone,userName, empAvatarUrl, otherInfo, entryTime, beFormalTime)
         VALUES (#{empName}, #{empPhone},#{userName}, #{empAvatarUrl}, #{otherInfo}, #{entryTime}, #{beFormalTime})
     </insert>
     <update id="updateEmp">
         UPDATE staffing_emp
         <set>
             <if test="userName!=null">
-                user_name=#{userName},
+                userName=#{userName},
             </if>
             <if test="empName!=null">
-                emp_name=#{empName},
+                empName=#{empName},
             </if>
             <if test="empPhone!=null">
-                emp_phone=#{empPhone},
+                empPhone=#{empPhone},
             </if>
             <if test="empStatus!=null">
-                emp_status=#{empStatus},
+                empStatus=#{empStatus},
             </if>
             <if test="empAvatarUrl!=null">
-                emp_avatar_url=#{empAvatarUrl},
+                empAvatarUrl=#{empAvatarUrl},
             </if>
             <if test="otherInfo!=null">
-                other_info=#{otherInfo},
+                otherInfo=#{otherInfo},
             </if>
             <if test="entryTime!=null">
-                entry_time=#{entryTime},
+                entryTime=#{entryTime},
             </if>
             <if test="beFormalTime!=null">
-                be_formal_time=#{beFormalTime},
+                beFormalTime=#{beFormalTime},
             </if>
         </set>
-        WHERE emp_id=#{empId}
+        WHERE empId=#{empId}
     </update>
 
 </mapper>

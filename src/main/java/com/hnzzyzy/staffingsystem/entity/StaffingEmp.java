@@ -1,12 +1,14 @@
 package com.hnzzyzy.staffingsystem.entity;
 
 import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableName;
 
 import java.util.Date;
 
 /**
  * Created by dtkj_android on 2017/5/5.
  */
+@TableName("staffing_emp")
 public class StaffingEmp {
     @TableId
     private long empId;//员工ID

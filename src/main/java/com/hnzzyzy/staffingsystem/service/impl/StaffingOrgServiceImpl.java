@@ -2,7 +2,6 @@ package com.hnzzyzy.staffingsystem.service.impl;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.hnzzyzy.staffingsystem.dao.StaffingOrgMapper;
 import com.hnzzyzy.staffingsystem.entity.StaffingOrg;
 import com.hnzzyzy.staffingsystem.service.StaffingOrgService;
@@ -18,37 +17,33 @@ import java.util.List;
 public class StaffingOrgServiceImpl implements StaffingOrgService {
     @Autowired
     private StaffingOrgMapper staffingOrgMapper;
+
     @Override
     public JSONArray getOrgTree(Long orgId) {
-
         JSONArray orgs = new JSONArray();
-        if(orgId==null){
-
-        }
         StaffingOrg staffingOrg = staffingOrgMapper.queryOrgById(orgId);
         JSONObject topOrg = new JSONObject();
-        topOrg.put("id",staffingOrg.getOrgId());
-        topOrg.put("name",staffingOrg.getOrgName());
-        topOrg.put("open",true);
+        topOrg.put("id", staffingOrg.getOrgId());
+        topOrg.put("name", staffingOrg.getOrgName());
+        topOrg.put("open", true);
         JSONArray childArray = getChildOrgTree(orgId);
-        topOrg.put("children",childArray);
+        topOrg.put("children", childArray);
         orgs.add(topOrg);
         return orgs;
     }
 
-
-    public JSONArray getChildOrgTree(Long orgId){
+    public JSONArray getChildOrgTree(Long orgId) {
         List<StaffingOrg> childOrgs = staffingOrgMapper.queryChildOrgById(orgId);
         JSONArray childArray = new JSONArray();
-        if(childOrgs.size()>0){
+        if (childOrgs.size() > 0) {
             for (StaffingOrg childOrg :
                     childOrgs) {
                 JSONObject node = new JSONObject();
-                node.put("id",childOrg.getOrgId());
-                node.put("name",childOrg.getOrgName());
-                node.put("open",true);
+                node.put("id", childOrg.getOrgId());
+                node.put("name", childOrg.getOrgName());
+                node.put("open", true);
                 JSONArray childArray1 = getChildOrgTree(childOrg.getOrgId());
-                node.put("children",childArray1);
+                node.put("children", childArray1);
                 childArray.add(node);
             }
         }
@@ -69,7 +64,7 @@ public class StaffingOrgServiceImpl implements StaffingOrgService {
 
     @Override
     public List<StaffingOrg> getOrgListByPage(int limit, int offset, String sortByOrder, StaffingOrg staffingOrg) {
-        return  staffingOrgMapper.queryOrgByPage(limit,offset,sortByOrder,staffingOrg);
+        return staffingOrgMapper.queryOrgByPage(limit, offset, sortByOrder, staffingOrg);
     }
 
     @Override
